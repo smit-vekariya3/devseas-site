@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DevSeas Global – Products</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #f0f4f8;
+  --white: #ffffff;
+  --navy: #0d1f3c;
+  --navy2: #162844;
+  --teal: #0a8478;
+  --teal2: #0db39e;
+  --gold: #b8842a;
+  --text: #1a2b42;
+  --sub: #4a5e78;
+  --muted: #7a8fa8;
+  --border: #dde4ef;
+  --shadow: 0 2px 16px rgba(13,31,60,0.07);
+  --shadow-hover: 0 8px 32px rgba(13,31,60,0.13);
+  --radius: 14px;
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+}
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+a { text-decoration:none; }
+
+/* ── NAV ── */
+nav {
+  background:var(--navy);
+  height:62px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 6vw; position:sticky; top:0; z-index:200;
+  box-shadow:0 1px 0 rgba(255,255,255,0.06), 0 4px 20px rgba(0,0,0,0.18);
+}
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-mark {
+  width:32px; height:32px; border-radius:8px;
+  background:linear-gradient(135deg, var(--teal), var(--teal2));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#fff;
+}
+.logo-name { font-size:1.05rem; font-weight:700; color:#fff; letter-spacing:0.01em; }
+.logo-name span { color:#e0a848; }
+.nav-links { display:flex; gap:6px; align-items:center; }
+.nav-links a {
+  color:rgba(255,255,255,0.62); font-size:0.82rem; font-weight:500;
+  padding:6px 14px; border-radius:8px; transition:background var(--transition), color var(--transition);
+}
+.nav-links a:hover { background:rgba(255,255,255,0.08); color:#fff; }
+.nav-links .active-page { color:#fff; background:rgba(255,255,255,0.1); }
+.nav-cta {
+  background:var(--teal); color:#fff!important; padding:7px 18px!important;
+  border-radius:8px!important; font-weight:600!important; font-size:0.82rem!important;
+  transition:background var(--transition)!important;
+}
+.nav-cta:hover { background:var(--teal2)!important; }
+
+/* ── PAGE TABS ── */
+.page-tabs {
+  background:var(--white); border-bottom:1px solid var(--border);
+  display:flex; padding:0 6vw; position:sticky; top:62px; z-index:190;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.ptab {
+  padding:16px 20px; font-size:0.82rem; font-weight:600; color:var(--muted);
+  cursor:pointer; border-bottom:2px solid transparent; transition:all var(--transition);
+  letter-spacing:0.02em;
+}
+.ptab:hover { color:var(--text); }
+.ptab.on { color:var(--teal); border-bottom-color:var(--teal); }
+
+/* ── SECTIONS ── */
+.page-section { display:none; }
+.page-section.on { display:block; }
+
+/* ═══════════════════════════ PRODUCTS PAGE ═══════════════════════════ */
+.prod-banner {
+  background:linear-gradient(118deg, var(--navy) 55%, #0a3a32 100%);
+  padding:46px 6vw 40px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+}
+.prod-banner h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(1.5rem,3vw,2.2rem);
+  color:#fff; font-weight:700; line-height:1.2;
+}
+.prod-banner h1 span { color:#e0a848; }
+.prod-banner p { color:rgba(255,255,255,0.58); font-size:0.84rem; margin-top:6px; line-height:1.65; max-width:420px; }
+.banner-pills { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+.pill {
+  padding:5px 14px; border-radius:20px; font-size:0.75rem; font-weight:600;
+  border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.06);
+}
+.bstats { display:flex; gap:32px; }
+.bs-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:#e0a848; line-height:1; }
+.bs-lbl { font-size:0.72rem; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.1em; margin-top:3px; }
+
+/* controls */
+.controls {
+  background:var(--white); padding:14px 6vw;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
+  position:sticky; top:111px; z-index:180;
+}
+.search-box { position:relative; flex:1; min-width:180px; }
+.search-box input {
+  width:100%; padding:9px 14px 9px 36px;
+  border:1px solid var(--border); border-radius:9px; font-family:inherit;
+  font-size:0.83rem; color:var(--text); background:var(--bg); outline:none;
+  transition:border-color var(--transition), box-shadow var(--transition);
+}
+.search-box input:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(10,132,120,0.1); }
+.search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:13px; pointer-events:none; }
+.cats { display:flex; gap:6px; flex-wrap:wrap; }
+.cat-btn {
+  padding:6px 14px; border-radius:20px; border:1px solid var(--border);
+  background:transparent; color:var(--sub); font-family:inherit; font-size:0.77rem;
+  font-weight:600; cursor:pointer; transition:all var(--transition); white-space:nowrap;
+}
+.cat-btn:hover { border-color:var(--teal); color:var(--teal); }
+.cat-btn.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+.result-count { margin-left:auto; font-size:0.77rem; color:var(--muted); white-space:nowrap; }
+.result-count strong { color:var(--text); }
+
+/* grid */
+.prod-grid-wrap { padding:28px 6vw 48px; }
+.prod-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+  gap:16px;
+}
+
+/* card */
+.pcard {
+  background:var(--white); border-radius:var(--radius);
+  border:1px solid var(--border); overflow:hidden;
+  display:flex; flex-direction:column;
+  transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor:pointer;
+}
+.pcard:hover { transform:translateY(-5px); box-shadow:var(--shadow-hover); border-color:rgba(10,132,120,0.2); }
+.pcard-accent { height:4px; }
+.pcard-body { padding:20px 20px 14px; flex:1; display:flex; flex-direction:column; gap:6px; }
+.pcard-cat {
+  font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+  padding:3px 9px; border-radius:4px; display:inline-block; width:fit-content;
+}
+.pcard-name { font-size:0.97rem; font-weight:700; color:var(--text); line-height:1.3; margin-top:2px; }
+.pcard-formula { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.pcard-desc { font-size:0.79rem; color:var(--sub); line-height:1.6; flex:1; margin-top:4px; }
+.pcard-footer {
+  padding:12px 20px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.purity-badge { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.enquire-btn {
+  font-size:0.74rem; font-weight:700; color:var(--teal); background:rgba(10,132,120,0.07);
+  border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-family:inherit;
+  transition:background var(--transition), color var(--transition);
+}
+.enquire-btn:hover { background:var(--teal); color:#fff; }
+
+/* category color sets */
+.c-ind .pcard-accent { background:linear-gradient(90deg,#3b6fd4,#5a8cf0); }
+.c-ind .pcard-cat { background:#eef2fb; color:#3b6fd4; }
+.c-agro .pcard-accent { background:linear-gradient(90deg,#1f9e4a,#3dd472); }
+.c-agro .pcard-cat { background:#eaf9ef; color:#1f9e4a; }
+.c-food .pcard-accent { background:linear-gradient(90deg,#c87d0e,#f0a832); }
+.c-food .pcard-cat { background:#fef6e7; color:#c87d0e; }
+.c-cos .pcard-accent { background:linear-gradient(90deg,#a030a0,#d060d0); }
+.c-cos .pcard-cat { background:#fceef9; color:#a030a0; }
+.c-sol .pcard-accent { background:linear-gradient(90deg,#0888a8,#18b8d8); }
+.c-sol .pcard-cat { background:#e8f7fc; color:#0888a8; }
+
+/* empty */
+.empty-msg { display:none; grid-column:1/-1; padding:60px; text-align:center; color:var(--muted); }
+.empty-msg h3 { font-size:1rem; color:var(--sub); margin-bottom:6px; }
+
+/* ═══════════════════════════ ABOUT PAGE ═══════════════════════════ */
+.about-hero {
+  background:linear-gradient(118deg, var(--navy) 55%, #0a3a32 100%);
+  padding:60px 6vw 56px;
+}
+.about-hero h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem);
+  color:#fff; font-weight:700; line-height:1.2; max-width:560px;
+}
+.about-hero h1 span { color:#e0a848; }
+.about-hero p { color:rgba(255,255,255,0.62); font-size:0.9rem; line-height:1.7; max-width:560px; margin-top:14px; }
+
+.about-body { padding:56px 6vw; display:flex; flex-direction:column; gap:56px; }
+
+/* intro */
+.about-intro {
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+}
+.about-intro-text h2 {
+  font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:700;
+  color:var(--text); line-height:1.3; margin-bottom:14px;
+}
+.about-intro-text h2 span { color:var(--teal); }
+.about-intro-text p { font-size:0.88rem; color:var(--sub); line-height:1.75; margin-bottom:12px; }
+.divider-line { width:48px; height:3px; border-radius:2px; background:linear-gradient(90deg,var(--teal),var(--gold)); margin-bottom:20px; }
+.about-intro-stats {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.astat {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 20px; text-align:center;
+  box-shadow:var(--shadow); transition:box-shadow var(--transition);
+}
+.astat:hover { box-shadow:var(--shadow-hover); }
+.astat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--teal); line-height:1; }
+.astat-lbl { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-top:5px; }
+
+/* values */
+.values-section h2 {
+  font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--text); margin-bottom:6px;
+}
+.values-section .section-sub { font-size:0.85rem; color:var(--muted); margin-bottom:28px; }
+.values-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+.val-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:26px 24px; box-shadow:var(--shadow);
+  border-left:3px solid var(--teal);
+  transition:box-shadow var(--transition), transform var(--transition);
+}
+.val-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-3px); }
+.val-num { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:rgba(10,132,120,0.18); margin-bottom:10px; }
+.val-card h3 { font-size:0.93rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+.val-card p { font-size:0.81rem; color:var(--sub); line-height:1.65; }
+
+/* why */
+.why-section h2 {
+  font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--text); margin-bottom:6px;
+}
+.why-section .section-sub { font-size:0.85rem; color:var(--muted); margin-bottom:28px; }
+.why-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+.why-item {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 22px; display:flex; gap:14px; align-items:flex-start;
+  box-shadow:var(--shadow); transition:box-shadow var(--transition);
+}
+.why-item:hover { box-shadow:var(--shadow-hover); }
+.why-dot { width:10px; height:10px; border-radius:50%; background:var(--teal); flex-shrink:0; margin-top:5px; }
+.why-item h4 { font-size:0.88rem; font-weight:700; color:var(--text); margin-bottom:5px; }
+.why-item p { font-size:0.8rem; color:var(--sub); line-height:1.6; }
+
+/* offices */
+.offices-section h2 {
+  font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--text); margin-bottom:6px;
+}
+.offices-section .section-sub { font-size:0.85rem; color:var(--muted); margin-bottom:28px; }
+.offices-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+.office-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:24px 22px; box-shadow:var(--shadow);
+  transition:box-shadow var(--transition), transform var(--transition);
+}
+.office-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+.office-flag { font-size:1.5rem; margin-bottom:10px; }
+.office-card h3 { font-size:0.9rem; font-weight:700; color:var(--text); margin-bottom:10px; }
+.office-row { display:flex; gap:8px; align-items:flex-start; margin-bottom:7px; }
+.office-row .ic { font-size:12px; color:var(--teal); margin-top:2px; flex-shrink:0; }
+.office-row span { font-size:0.78rem; color:var(--sub); line-height:1.5; }
+
+/* commitment strip */
+.commitment-strip {
+  background:linear-gradient(118deg, var(--navy) 55%, #0a3a32 100%);
+  border-radius:var(--radius); padding:40px 36px;
+  display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center;
+}
+.commitment-strip h2 {
+  font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700;
+  color:#fff; line-height:1.3; margin-bottom:10px;
+}
+.commitment-strip p { font-size:0.84rem; color:rgba(255,255,255,0.62); line-height:1.7; max-width:520px; }
+.strip-btn {
+  background:var(--teal); color:#fff; padding:12px 26px; border-radius:10px;
+  font-size:0.84rem; font-weight:600; cursor:pointer; border:none; font-family:inherit;
+  white-space:nowrap; transition:background var(--transition);
+}
+.strip-btn:hover { background:var(--teal2); }
+
+/* ═══════════════════════════ MODAL ═══════════════════════════ */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(13,31,60,0.5);
+  backdrop-filter:blur(4px); z-index:500;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity 0.2s;
+}
+.modal-overlay.show { opacity:1; pointer-events:all; }
+.modal {
+  background:var(--white); border-radius:18px; max-width:480px; width:100%;
+  box-shadow:0 30px 80px rgba(0,0,0,0.22);
+  transform:translateY(18px) scale(0.98); transition:transform 0.25s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+.modal-overlay.show .modal { transform:translateY(0) scale(1); }
+.modal-header {
+  padding:22px 24px 18px; border-bottom:1px solid var(--border);
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+}
+.modal-titles h2 { font-size:1.1rem; font-weight:700; color:var(--text); line-height:1.3; }
+.modal-titles span { font-size:0.75rem; color:var(--muted); font-style:italic; display:block; margin-top:3px; }
+.modal-close {
+  width:30px; height:30px; border-radius:8px; border:1px solid var(--border);
+  background:var(--bg); cursor:pointer; font-size:14px; color:var(--muted);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition:background var(--transition);
+}
+.modal-close:hover { background:var(--border); }
+.modal-rows { padding:18px 24px; display:flex; flex-direction:column; gap:0; }
+.mrow {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding:11px 0; border-bottom:1px solid var(--border);
+}
+.mrow:last-child { border-bottom:none; }
+.mrow label { font-size:0.77rem; color:var(--muted); font-weight:500; }
+.mrow val { font-size:0.82rem; font-weight:600; color:var(--text); text-align:right; max-width:60%; line-height:1.4; }
+.modal-actions { padding:16px 24px 20px; display:flex; gap:10px; }
+.mbtn { flex:1; padding:11px; border-radius:10px; font-family:inherit; font-size:0.82rem; font-weight:600; cursor:pointer; border:none; transition:background var(--transition); }
+.mbtn-primary { background:var(--teal); color:#fff; }
+.mbtn-primary:hover { background:var(--teal2); }
+.mbtn-sec { background:var(--bg); color:var(--text); border:1px solid var(--border); }
+.mbtn-sec:hover { background:var(--border); }
+.enquiry-modal { max-width:560px; }
+.enquiry-form {
+  padding:20px 24px 24px; display:grid; grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.form-field { display:flex; flex-direction:column; gap:6px; }
+.form-field.full { grid-column:1/-1; }
+.form-field label { font-size:0.76rem; color:var(--muted); font-weight:600; }
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width:100%; border:1px solid var(--border); border-radius:9px; background:var(--bg);
+  color:var(--text); font-family:inherit; font-size:0.83rem; outline:none;
+  padding:10px 12px; transition:border-color var(--transition), box-shadow var(--transition);
+}
+.form-field textarea { resize:vertical; min-height:92px; line-height:1.55; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color:var(--teal); box-shadow:0 0 0 3px rgba(10,132,120,0.1);
+}
+.form-note {
+  grid-column:1/-1; font-size:0.76rem; color:var(--muted); line-height:1.55;
+  background:rgba(10,132,120,0.06); border:1px solid rgba(10,132,120,0.12);
+  border-radius:10px; padding:10px 12px;
+}
+.form-actions { grid-column:1/-1; display:flex; gap:10px; margin-top:2px; }
+
+/* ═══════════════════════════ FOOTER ═══════════════════════════ */
+footer {
+  background:var(--navy2); border-top:1px solid rgba(255,255,255,0.06);
+  padding:20px 6vw; display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:10px;
+}
+footer p { font-size:0.77rem; color:rgba(255,255,255,0.38); }
+footer a { font-size:0.77rem; color:rgba(255,255,255,0.38); transition:color var(--transition); }
+footer a:hover { color:rgba(255,255,255,0.75); }
+.footer-links { display:flex; gap:16px; }
+
+/* ═══════════════════════════ RESPONSIVE ═══════════════════════════ */
+@media(max-width:760px) {
+  .about-intro { grid-template-columns:1fr; }
+  .bstats { gap:20px; }
+  .commitment-strip { grid-template-columns:1fr; }
+  .enquiry-form { grid-template-columns:1fr; }
+  nav { padding:0 4vw; }
+  .controls, .prod-grid-wrap, .about-body, .prod-banner, .about-hero { padding-left:4vw; padding-right:4vw; }
+  .page-tabs { padding:0 4vw; overflow-x:auto; }
+}
+@media(max-width:480px) {
+  .nav-links a.hide-sm { display:none; }
+  .result-count { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">D</div>
+    <span class="logo-name">DevSeas <span>Global</span></span>
+  </div>
+  <div class="nav-links">
+    
+    <a href="#" id="nav-products" class="active-page" onclick="switchTab('products');return false;">Products</a>
+    <a href="#" id="nav-about" onclick="switchTab('about');return false;" class="hide-sm">About Us</a>
+    <a href="#" class="nav-cta" onclick="openEnquiryForm();return false;">Enquire Now</a>
+  </div>
+</nav>
+
+<!-- PAGE TABS -->
+<!-- <div class="page-tabs">
+  <div class="ptab on" id="tab-products" onclick="switchTab('products')">Products</div>
+  <div class="ptab" id="tab-about" onclick="switchTab('about')">About Us</div>
+</div> -->
+
+
+<!-- ══════════ PRODUCTS SECTION ══════════ -->
+<div class="page-section on" id="sec-products">
+
+  <div class="prod-banner">
+    <div>
+      <h1>Our Product <span>Catalogue</span></h1>
+      <p>Premium chemicals and ingredients exported globally — sourced to the highest standards for industrial, agricultural, food, cosmetic, and solvent applications.</p>
+      <div class="banner-pills">
+        <span class="pill">Industrial Manufacturing</span>
+        <span class="pill">Agro & Agriculture</span>
+        <span class="pill">Food & Beverage</span>
+        <span class="pill">Cosmetics & Personal Care</span>
+        <span class="pill">Solvent Processing</span>
+      </div>
+    </div>
+    <div class="bstats">
+      <div><div class="bs-num">25+</div><div class="bs-lbl">Products</div></div>
+      <div><div class="bs-num">5</div><div class="bs-lbl">Categories</div></div>
+    
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="Search product name or formula…" oninput="filterProducts()"/>
+    </div>
+    <div class="cats">
+      <button class="cat-btn on" onclick="setCat(this,'all')">All</button>
+      <button class="cat-btn" onclick="setCat(this,'ind')">Industrial</button>
+      <button class="cat-btn" onclick="setCat(this,'agro')">Agro</button>
+      <button class="cat-btn" onclick="setCat(this,'food')">Food & Bev</button>
+      <button class="cat-btn" onclick="setCat(this,'cos')">Cosmetics</button>
+      <button class="cat-btn" onclick="setCat(this,'sol')">Solvents</button>
+    </div>
+    <div class="result-count">Showing <strong id="countNum">25</strong> products</div>
+  </div>
+
+  <div class="prod-grid-wrap">
+    <div class="prod-grid" id="prodGrid">
+
+      <!-- INDUSTRIAL -->
+      <div class="pcard c-ind" data-c="ind" data-s="sodium hydroxide caustic soda naoh"
+        data-m='{"n":"Sodium Hydroxide","f":"NaOH","cas":"1310-73-2","pur":"99% min","gr":"Industrial","pk":"25 kg Bags / Drums","use":"Manufacturing of paper, soap, detergents, textile processing & aluminium refining","cat":"Industrial"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Industrial</span>
+          <div class="pcard-name">Sodium Hydroxide</div>
+          <div class="pcard-formula">NaOH · CAS 1310-73-2</div>
+          <div class="pcard-desc">Caustic soda used in paper, soap, textile, and aluminium manufacturing processes.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">Purity 99%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-ind" data-c="ind" data-s="sulfuric acid h2so4"
+        data-m='{"n":"Sulfuric Acid","f":"H₂SO₄","cas":"7664-93-9","pur":"98% min","gr":"Industrial","pk":"Carboys / IBCs / Tankers","use":"Fertilizer production, metal processing, battery manufacturing, chemical synthesis","cat":"Industrial"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Industrial</span>
+          <div class="pcard-name">Sulfuric Acid</div>
+          <div class="pcard-formula">H₂SO₄ · CAS 7664-93-9</div>
+          <div class="pcard-desc">Essential mineral acid for fertilizer production, metal processing and battery manufacturing.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">Purity 98%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-ind" data-c="ind" data-s="calcium carbonate caco3"
+        data-m='{"n":"Calcium Carbonate","f":"CaCO₃","cas":"471-34-1","pur":"98% min","gr":"Industrial","pk":"25 kg / 50 kg Bags","use":"Filler in paint, plastics, rubber, paper, and construction materials","cat":"Industrial"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Industrial</span>
+          <div class="pcard-name">Calcium Carbonate</div>
+          <div class="pcard-formula">CaCO₃ · CAS 471-34-1</div>
+          <div class="pcard-desc">Key filler and coating agent for paints, plastics, rubber, and construction.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">Purity 98%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-ind" data-c="ind" data-s="titanium dioxide tio2"
+        data-m='{"n":"Titanium Dioxide","f":"TiO₂","cas":"13463-67-7","pur":"99% min","gr":"Industrial","pk":"25 kg Bags","use":"White pigment for paints, coatings, plastics, and paper whitening","cat":"Industrial"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Industrial</span>
+          <div class="pcard-name">Titanium Dioxide</div>
+          <div class="pcard-formula">TiO₂ · CAS 13463-67-7</div>
+          <div class="pcard-desc">Premium white pigment widely used in paints, coatings, plastics and paper.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">Purity 99%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-ind" data-c="ind" data-s="hydrochloric acid hcl muriatic"
+        data-m='{"n":"Hydrochloric Acid","f":"HCl","cas":"7647-01-0","pur":"33% min","gr":"Industrial","pk":"Carboys / Drums","use":"Steel pickling, PVC production, pH control, water treatment","cat":"Industrial"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Industrial</span>
+          <div class="pcard-name">Hydrochloric Acid</div>
+          <div class="pcard-formula">HCl · CAS 7647-01-0</div>
+          <div class="pcard-desc">Muriatic acid for steel pickling, PVC production and water treatment.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">33% Grade</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <!-- AGRO -->
+      <div class="pcard c-agro" data-c="agro" data-s="urea fertilizer co nh2"
+        data-m='{"n":"Urea","f":"CO(NH₂)₂","cas":"57-13-6","pur":"46% N min","gr":"Agricultural","pk":"50 kg Bags / Bulk","use":"Primary nitrogen fertilizer for crops; cattle feed supplement","cat":"Agro & Agriculture"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Agro</span>
+          <div class="pcard-name">Urea</div>
+          <div class="pcard-formula">CO(NH₂)₂ · CAS 57-13-6</div>
+          <div class="pcard-desc">High-nitrogen fertilizer essential for improving crop yield and soil fertility worldwide.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">46% Nitrogen</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-agro" data-c="agro" data-s="zinc sulphate znso4"
+        data-m='{"n":"Zinc Sulphate","f":"ZnSO₄","cas":"7733-02-0","pur":"33% Zn min","gr":"Agricultural","pk":"25 kg / 50 kg Bags","use":"Micronutrient for zinc-deficient soils; crop yield improvement","cat":"Agro & Agriculture"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Agro</span>
+          <div class="pcard-name">Zinc Sulphate</div>
+          <div class="pcard-formula">ZnSO₄ · CAS 7733-02-0</div>
+          <div class="pcard-desc">Micronutrient supplement correcting zinc deficiency in soil and improving crop yields.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">33% Zn</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-agro" data-c="agro" data-s="potassium chloride kcl mop"
+        data-m='{"n":"Potassium Chloride","f":"KCl","cas":"7447-40-7","pur":"60% K₂O min","gr":"Agricultural","pk":"50 kg Bags / Bulk","use":"Potash fertilizer enhancing plant growth, fruiting and disease resistance","cat":"Agro & Agriculture"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Agro</span>
+          <div class="pcard-name">Potassium Chloride</div>
+          <div class="pcard-formula">KCl · CAS 7447-40-7</div>
+          <div class="pcard-desc">MOP fertilizer supplying essential potassium for plant growth and disease resistance.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">60% K₂O</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-agro" data-c="agro" data-s="diammonium phosphate dap nh4"
+        data-m='{"n":"Diammonium Phosphate","f":"(NH₄)₂HPO₄","cas":"7783-28-0","pur":"18-46 Grade","gr":"Agricultural","pk":"50 kg Bags / Bulk","use":"High-phosphorus fertilizer promoting root development and early growth","cat":"Agro & Agriculture"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Agro</span>
+          <div class="pcard-name">Diammonium Phosphate</div>
+          <div class="pcard-formula">(NH₄)₂HPO₄ · DAP</div>
+          <div class="pcard-desc">Premium phosphorus fertilizer for strong root systems and early crop development.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">18-46 Grade</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <!-- FOOD -->
+      <div class="pcard c-food" data-c="food" data-s="citric acid c6h8o7"
+        data-m='{"n":"Citric Acid","f":"C₆H₈O₇","cas":"77-92-9","pur":"99.5% min","gr":"Food Grade","pk":"25 kg Bags","use":"Acidulant and preservative in beverages, confectionery, and dairy products","cat":"Food & Beverage"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Food & Bev</span>
+          <div class="pcard-name">Citric Acid</div>
+          <div class="pcard-formula">C₆H₈O₇ · CAS 77-92-9</div>
+          <div class="pcard-desc">Food-grade acidulant and preservative for beverages, candy and dairy products.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.5%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-food" data-c="food" data-s="sodium benzoate c7h5"
+        data-m='{"n":"Sodium Benzoate","f":"C₇H₅NaO₂","cas":"532-32-1","pur":"99% min","gr":"Food Grade","pk":"25 kg Bags","use":"Preservative in juices, soft drinks, jams, sauces and pickles","cat":"Food & Beverage"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Food & Bev</span>
+          <div class="pcard-name">Sodium Benzoate</div>
+          <div class="pcard-formula">C₇H₅NaO₂ · CAS 532-32-1</div>
+          <div class="pcard-desc">Common food preservative used in juices, soft drinks, jams and pickles.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-food" data-c="food" data-s="xanthan gum e415 polysaccharide"
+        data-m='{"n":"Xanthan Gum","f":"Polysaccharide · E415","cas":"11138-66-2","pur":"Food Grade","gr":"Food Grade","pk":"25 kg Bags","use":"Thickener and stabilizer in sauces, dressings, bakery and gluten-free products","cat":"Food & Beverage"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Food & Bev</span>
+          <div class="pcard-name">Xanthan Gum</div>
+          <div class="pcard-formula">Polysaccharide · E415</div>
+          <div class="pcard-desc">Natural thickener and stabilizer for sauces, dressings, and gluten-free bakery.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">Food Grade</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-food" data-c="food" data-s="ascorbic acid vitamin c c6h8o6"
+        data-m='{"n":"Ascorbic Acid","f":"C₆H₈O₆","cas":"50-81-7","pur":"99% min","gr":"Food / Pharma Grade","pk":"25 kg Drums","use":"Antioxidant, Vitamin C supplement, food preservation and nutritional fortification","cat":"Food & Beverage"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Food & Bev</span>
+          <div class="pcard-name">Ascorbic Acid</div>
+          <div class="pcard-formula">C₆H₈O₆ · Vitamin C</div>
+          <div class="pcard-desc">Antioxidant and Vitamin C supplement for food preservation and fortification.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-food" data-c="food" data-s="maltodextrin c6h10o5"
+        data-m='{"n":"Maltodextrin","f":"(C₆H₁₀O₅)ₙ","cas":"9050-36-6","pur":"DE 10–20","gr":"Food Grade","pk":"25 kg Bags","use":"Filler, thickener, and carrier in powdered foods and dietary supplements","cat":"Food & Beverage"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Food & Bev</span>
+          <div class="pcard-name">Maltodextrin</div>
+          <div class="pcard-formula">(C₆H₁₀O₅)ₙ · DE 10–20</div>
+          <div class="pcard-desc">Versatile filler, thickener, and carrier for powdered foods and supplements.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">DE 10–20</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <!-- COSMETICS -->
+      <div class="pcard c-cos" data-c="cos" data-s="glycerin glycerol c3h8o3"
+        data-m='{"n":"Glycerin","f":"C₃H₈O₃","cas":"56-81-5","pur":"99.5% min","gr":"Cosmetic / USP / BP","pk":"250 kg Drums / IBC","use":"Moisturizer and humectant in skin care, hair care, soaps and pharmaceuticals","cat":"Cosmetics & Personal Care"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Cosmetics</span>
+          <div class="pcard-name">Glycerin</div>
+          <div class="pcard-formula">C₃H₈O₃ · CAS 56-81-5</div>
+          <div class="pcard-desc">USP-grade humectant and moisturizer for skin care, hair care, and personal care.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.5%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-cos" data-c="cos" data-s="hyaluronic acid ha serum"
+        data-m='{"n":"Hyaluronic Acid","f":"(C₁₄H₂₁NO₁₁)ₙ","cas":"9004-61-9","pur":"≥95% HA content","gr":"Cosmetic Grade","pk":"1 kg / 5 kg Pouches","use":"Anti-aging serums, moisturizers and intensive skin hydration formulations","cat":"Cosmetics & Personal Care"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Cosmetics</span>
+          <div class="pcard-name">Hyaluronic Acid</div>
+          <div class="pcard-formula">(C₁₄H₂₁NO₁₁)ₙ · HA</div>
+          <div class="pcard-desc">Premium active ingredient for anti-aging serums, moisturizers and skin hydration.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">≥95% HA</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-cos" data-c="cos" data-s="cetyl alcohol emulsifier c16h34o"
+        data-m='{"n":"Cetyl Alcohol","f":"C₁₆H₃₄O","cas":"36653-82-4","pur":"97% min","gr":"Cosmetic Grade","pk":"25 kg Bags","use":"Emulsifier and emollient in creams, lotions and hair conditioners","cat":"Cosmetics & Personal Care"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Cosmetics</span>
+          <div class="pcard-name">Cetyl Alcohol</div>
+          <div class="pcard-formula">C₁₆H₃₄O · CAS 36653-82-4</div>
+          <div class="pcard-desc">Fatty alcohol emulsifier and emollient in creams, lotions and hair conditioners.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">97%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-cos" data-c="cos" data-s="niacinamide vitamin b3 c6h6n2o"
+        data-m='{"n":"Niacinamide","f":"C₆H₆N₂O","cas":"98-92-0","pur":"99% min","gr":"Cosmetic / USP","pk":"1 kg / 25 kg Bags","use":"Brightening, pore minimizing and anti-inflammatory active in face serums","cat":"Cosmetics & Personal Care"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Cosmetics</span>
+          <div class="pcard-name">Niacinamide</div>
+          <div class="pcard-formula">C₆H₆N₂O · Vitamin B3</div>
+          <div class="pcard-desc">Multifunctional active for brightening, pore minimizing and anti-inflammatory skin care.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <!-- SOLVENTS -->
+      <div class="pcard c-sol" data-c="sol" data-s="acetone ch3 co solvent"
+        data-m='{"n":"Acetone","f":"(CH₃)₂CO","cas":"67-64-1","pur":"99.5% min","gr":"Industrial / Lab","pk":"200 L Drums / IBC","use":"Degreasing, paint thinner, laboratory solvent and pharmaceutical synthesis","cat":"Solvent Processing"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Solvent</span>
+          <div class="pcard-name">Acetone</div>
+          <div class="pcard-formula">(CH₃)₂CO · CAS 67-64-1</div>
+          <div class="pcard-desc">High-purity ketone solvent for degreasing, paint thinning and pharmaceutical use.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.5%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-sol" data-c="sol" data-s="isopropyl alcohol ipa c3h8o"
+        data-m='{"n":"Isopropyl Alcohol","f":"C₃H₈O","cas":"67-63-0","pur":"99.9% min","gr":"Industrial / Pharma","pk":"200 L Drums / IBC","use":"Hand sanitizer, electronics cleaning, pharmaceutical excipient and solvent","cat":"Solvent Processing"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Solvent</span>
+          <div class="pcard-name">Isopropyl Alcohol</div>
+          <div class="pcard-formula">C₃H₈O · IPA</div>
+          <div class="pcard-desc">IPA 99.9% for sanitizers, electronics cleaning and pharmaceutical manufacturing.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.9%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-sol" data-c="sol" data-s="ethanol ethyl alcohol c2h5oh"
+        data-m='{"n":"Ethanol","f":"C₂H₅OH","cas":"64-17-5","pur":"96% / 99.9%","gr":"Industrial / Pharma","pk":"200 L Drums / Flexitanks","use":"Solvent, antiseptic, fuel additive and food flavoring applications","cat":"Solvent Processing"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Solvent</span>
+          <div class="pcard-name">Ethanol</div>
+          <div class="pcard-formula">C₂H₅OH · CAS 64-17-5</div>
+          <div class="pcard-desc">Multipurpose alcohol solvent for pharma, antiseptics, fuel and food applications.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">96% / 99.9%</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-sol" data-c="sol" data-s="methanol methyl alcohol ch3oh"
+        data-m='{"n":"Methanol","f":"CH₃OH","cas":"67-56-1","pur":"99.85% min","gr":"Industrial","pk":"200 L Drums / ISO Tankers","use":"Fuel blending, antifreeze, industrial solvent and chemical synthesis feedstock","cat":"Solvent Processing"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Solvent</span>
+          <div class="pcard-name">Methanol</div>
+          <div class="pcard-formula">CH₃OH · CAS 67-56-1</div>
+          <div class="pcard-desc">Industrial-grade methyl alcohol for fuel blending, antifreeze and chemical synthesis.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.85%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="pcard c-sol" data-c="sol" data-s="toluene c7h8 aromatic"
+        data-m='{"n":"Toluene","f":"C₇H₈","cas":"108-88-3","pur":"99.5% min","gr":"Industrial","pk":"200 L Drums / ISO Tanks","use":"Paint thinner, adhesives, rubber processing and printing ink solvent","cat":"Solvent Processing"}'>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <span class="pcard-cat">Solvent</span>
+          <div class="pcard-name">Toluene</div>
+          <div class="pcard-formula">C₇H₈ · CAS 108-88-3</div>
+          <div class="pcard-desc">Aromatic solvent for paints, adhesives, rubber processing and printing inks.</div>
+        </div>
+        <div class="pcard-footer">
+          <span class="purity-badge">99.5%+</span>
+          <button class="enquire-btn" onclick="openModal(this)">Details</button>
+        </div>
+      </div>
+
+      <div class="empty-msg" id="emptyMsg">
+        <div style="font-size:2rem;margin-bottom:10px;">⊘</div>
+        <h3>No products found</h3>
+        <p style="font-size:0.8rem;margin-top:4px;">Try a different keyword or select another category.</p>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /products section -->
+
+
+<!-- ══════════ ABOUT SECTION ══════════ -->
+<div class="page-section" id="sec-about">
+
+  <div class="about-hero">
+    <h1>About <span>DevSeas Global</span></h1>
+    <p>Empowering businesses worldwide with premium export solutions, international market expertise, and an unwavering commitment to quality and reliability.</p>
+  </div>
+
+  <div class="about-body">
+
+    <!-- Intro + stats -->
+    <div class="about-intro">
+      <div class="about-intro-text">
+        <div class="divider-line"></div>
+        <h2>Who We <span>Are</span></h2>
+        <p>DevSeas Global Pvt. Ltd. is a leading export company specialising in premium chemicals, ingredients, and industrial solutions. With years of experience in international trade, we have built deep expertise in global market regulations, logistics, and supply chain management.</p>
+        <p>We deliver safe, compliant, and high-performance ingredients designed to elevate the quality of pharmaceutical, nutraceutical, cosmetic, and food formulations. With precision-driven sourcing and a quality-first mindset, DevSeas Global is your dependable partner for superior excipients and cosmetic ingredients.</p>
+        <p>From our offices in Vadodara, India and Berlin, Germany, we operate across 40+ countries — serving industries ranging from industrial manufacturing and agro chemicals to food processing and personal care.</p>
+      </div>
+      <div class="about-intro-stats">
+        <div class="astat"><div class="astat-num">40+</div><div class="astat-lbl">Countries Served</div></div>
+        <div class="astat"><div class="astat-num">500+</div><div class="astat-lbl">Products</div></div>
+        <div class="astat"><div class="astat-num">12+</div><div class="astat-lbl">Years Experience</div></div>
+        <div class="astat"><div class="astat-num">98%</div><div class="astat-lbl">Client Retention</div></div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="values-section">
+      <h2>Core Values</h2>
+      <p class="section-sub">Values that define us, drive us, and unite us.</p>
+      <div class="values-grid">
+        <div class="val-card">
+          <div class="val-num">01</div>
+          <h3>Global Expertise</h3>
+          <p>With years of experience in international trade, we understand the nuances of global markets. Our team has deep knowledge of regulations, logistics, and market trends, ensuring your goods are exported smoothly and efficiently. We help you navigate complex trade routes with confidence.</p>
+        </div>
+        <div class="val-card">
+          <div class="val-num">02</div>
+          <h3>Comprehensive Solutions</h3>
+          <p>We offer end-to-end export services tailored to your needs, from documentation and compliance to logistics and delivery. Our goal is to simplify every step of the process, providing seamless solutions that save you time and reduce hassle.</p>
+        </div>
+        <div class="val-card">
+          <div class="val-num">03</div>
+          <h3>Wide Network</h3>
+          <p>Our extensive network of partners and agents across multiple regions allows us to operate in a wide range of industries and markets. This connectivity helps us expedite shipping, negotiate favorable terms, and manage unforeseen challenges efficiently.</p>
+        </div>
+        <div class="val-card">
+          <div class="val-num">04</div>
+          <h3>Client-Centric Approach</h3>
+          <p>At DevSeas Global, we place our clients at the core of our operations. We take time to understand your unique business needs and provide personalised services that align with your goals, with a team always ready to offer support and guidance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="why-section">
+      <h2>Why Choose Us</h2>
+      <p class="section-sub">What sets DevSeas Global apart in the global export market.</p>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-dot"></div>
+          <div>
+            <h4>Product Innovation &amp; Superior Quality</h4>
+            <p>We deliver innovative and reliable products designed to meet evolving industry standards and performance requirements.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-dot"></div>
+          <div>
+            <h4>Cost-Effective Pricing</h4>
+            <p>Optimised sourcing and efficient operations enable us to offer high-quality products at competitive market prices.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-dot"></div>
+          <div>
+            <h4>Reliable &amp; Sustainable Supply Chain</h4>
+            <p>Our strong supply network ensures reliable availability, responsible sourcing, and timely delivery worldwide.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-dot"></div>
+          <div>
+            <h4>Dedicated Customer Support</h4>
+            <p>Responsive communication, technical guidance, and dependable after-sales service from a team that genuinely cares.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-dot"></div>
+          <div>
+            <h4>Long-Term Business Partnerships</h4>
+            <p>We focus on building transparent and dependable relationships that support mutual growth and long-term success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offices -->
+    <div class="offices-section">
+      <h2>Our Offices</h2>
+      <p class="section-sub">Reach us at any of our global locations.</p>
+      <div class="offices-grid">
+        <div class="office-card">
+          <div class="office-flag">🇮🇳</div>
+          <h3>India — Office 1 (Head Office)</h3>
+          <div class="office-row"><span class="ic">📍</span><span>FF-16 Kanha Luxuria, Savita Hospital Road, Parivar Char Rasta, Vadodara, Gujarat 390025</span></div>
+          <div class="office-row"><span class="ic">📞</span><span>+91 70966 56379<br/>+91 63523 22122</span></div>
+          <div class="office-row"><span class="ic">✉</span><span>info@devseasglobal.com</span></div>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇮🇳</div>
+          <h3>India — Office 2</h3>
+          <div class="office-row"><span class="ic">📍</span><span>D-38, 3rd Road, Sardar Estate, Ajwa Road, Vadodara 390019</span></div>
+          <div class="office-row"><span class="ic">📞</span><span>+91 94293 02953</span></div>
+          <div class="office-row"><span class="ic">✉</span><span>info@devseasglobal.com</span></div>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇩🇪</div>
+          <h3>Germany Office</h3>
+          <div class="office-row"><span class="ic">📍</span><span>Lüneburger Straße 3, 2.OG (2nd Floor), 10557 Berlin, Germany</span></div>
+          <div class="office-row"><span class="ic">📞</span><span>+49 155 60547524</span></div>
+          <div class="office-row"><span class="ic">✉</span><span>info@devseasglobal.com</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commitment strip -->
+    <div class="commitment-strip">
+      <div>
+        <h2>Our Commitment to Excellence</h2>
+        <p>We are committed to empowering businesses worldwide by offering premium export solutions tailored to their unique needs. With extensive experience and a profound understanding of international markets, we take pride in delivering exceptional service, unmatched reliability, and outstanding value.</p>
+      </div>
+      <button class="strip-btn" onclick="switchTab('products')">View Products →</button>
+    </div>
+
+  </div>
+</div><!-- /about section -->
+
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-titles">
+        <h2 id="mName"></h2>
+        <span id="mFormula"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-rows">
+      <div class="mrow"><label>Category</label><val id="mCat"></val></div>
+      <div class="mrow"><label>CAS Number</label><val id="mCas"></val></div>
+      <div class="mrow"><label>Purity</label><val id="mPur"></val></div>
+      <div class="mrow"><label>Application Grade</label><val id="mGr"></val></div>
+      <div class="mrow"><label>Packaging</label><val id="mPk"></val></div>
+      <div class="mrow"><label>Applications</label><val id="mUse"></val></div>
+    </div>
+    <div class="modal-actions">
+      <button class="mbtn mbtn-primary" onclick="sendEnquiry()">Send Enquiry</button>
+      <button class="mbtn mbtn-sec">Download TDS</button>
+    </div>
+  </div>
+</div>
+
+<!-- ENQUIRY FORM MODAL -->
+<div class="modal-overlay" id="enquiryOverlay" onclick="handleEnquiryOverlayClick(event)">
+  <div class="modal enquiry-modal" id="enquiryModal">
+    <div class="modal-header">
+      <div class="modal-titles">
+        <h2>Send Product Enquiry</h2>
+        <span>Share your details and our team will contact you shortly.</span>
+      </div>
+      <button class="modal-close" onclick="closeEnquiryForm()">x</button>
+    </div>
+    <form class="enquiry-form" id="enquiryForm" onsubmit="submitEnquiryForm(event)">
+      <div class="form-field">
+        <label for="eqName">Full Name</label>
+        <input id="eqName" name="name" type="text" autocomplete="name" required/>
+      </div>
+      <div class="form-field">
+        <label for="eqCompany">Company Name</label>
+        <input id="eqCompany" name="company" type="text" autocomplete="organization"/>
+      </div>
+      <div class="form-field">
+        <label for="eqPhone">Phone Number</label>
+        <input id="eqPhone" name="phone" type="tel" autocomplete="tel" required/>
+      </div>
+      <div class="form-field">
+        <label for="eqEmail">Email Address</label>
+        <input id="eqEmail" name="email" type="email" autocomplete="email" required/>
+      </div>
+      <div class="form-field">
+        <label for="eqProduct">Product</label>
+        <input id="eqProduct" name="product" type="text" placeholder="Product name"/>
+      </div>
+      <div class="form-field">
+        <label for="eqQty">Required Quantity</label>
+        <input id="eqQty" name="quantity" type="text" placeholder="e.g. 500 kg / 1 container"/>
+      </div>
+      <div class="form-field full">
+        <label for="eqMessage">Message</label>
+        <textarea id="eqMessage" name="message" placeholder="Tell us grade, packaging, destination, or any special requirement."></textarea>
+      </div>
+      <div class="form-note">You can also reach us directly at info@devseasglobal.com or +91 70966 56379.</div>
+      <div class="form-actions">
+        <button class="mbtn mbtn-primary" type="submit">Submit Enquiry</button>
+        <button class="mbtn mbtn-sec" type="button" onclick="closeEnquiryForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>DevSeas Global Pvt. Ltd.</strong> · All rights reserved.</p>
+  <div class="footer-links">
+    <a href="mailto:info@devseasglobal.com">info@devseasglobal.com</a>
+    <a href="tel:+917096656379">+91 70966 56379</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+  // ─── TAB SWITCHING ───
+  function switchTab(tab) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('on'));
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('on'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-page'));
+    document.getElementById('sec-' + tab).classList.add('on');
+    document.getElementById('tab-' + tab).classList.add('on');
+    const activeNav = document.getElementById('nav-' + tab);
+    if (activeNav) activeNav.classList.add('active-page');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // ─── PRODUCT FILTER ───
+  let activeCat = 'all';
+
+  function setCat(btn, cat) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeCat = cat;
+    filterProducts();
+  }
+
+  function filterProducts() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.pcard[data-c]');
+    let count = 0;
+
+    cards.forEach(card => {
+      const catMatch = activeCat === 'all' || card.dataset.c === activeCat;
+      const searchMatch = !q || card.dataset.s.includes(q);
+      const show = catMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) count++;
+    });
+
+    document.getElementById('emptyMsg').style.display = count === 0 ? 'block' : 'none';
+    document.getElementById('countNum').textContent = count;
+  }
+
+  // ─── MODAL ───
+  function openModal(btn) {
+    const card = btn.closest('.pcard');
+    const d = JSON.parse(card.dataset.m);
+    document.getElementById('mName').textContent = d.n;
+    document.getElementById('mFormula').textContent = d.f;
+    document.getElementById('mCat').textContent = d.cat;
+    document.getElementById('mCas').textContent = d.cas;
+    document.getElementById('mPur').textContent = d.pur;
+    document.getElementById('mGr').textContent = d.gr;
+    document.getElementById('mPk').textContent = d.pk;
+    document.getElementById('mUse').textContent = d.use;
+    document.getElementById('modalOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function sendEnquiry() {
+    const name = document.getElementById('mName').textContent;
+    closeModal();
+    openEnquiryForm(name);
+  }
+
+  function openEnquiryForm(productName = '') {
+    const form = document.getElementById('enquiryForm');
+    form.reset();
+    document.getElementById('eqProduct').value = productName;
+    document.getElementById('enquiryOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('eqName').focus(), 120);
+  }
+
+  function closeEnquiryForm() {
+    document.getElementById('enquiryOverlay').classList.remove('show');
+    if (!document.getElementById('modalOverlay').classList.contains('show')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleEnquiryOverlayClick(e) {
+    if (e.target === document.getElementById('enquiryOverlay')) closeEnquiryForm();
+  }
+
+  function submitEnquiryForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const fields = form.elements;
+    const details = [
+      'Name: ' + fields.name.value,
+      'Company: ' + (fields.company.value || '-'),
+      'Phone: ' + fields.phone.value,
+      'Email: ' + fields.email.value,
+      'Product: ' + (fields.product.value || '-'),
+      'Quantity: ' + (fields.quantity.value || '-'),
+      'Message: ' + (fields.message.value || '-')
+    ].join('\n');
+    const subject = encodeURIComponent('Product enquiry' + (fields.product.value ? ' - ' + fields.product.value : ''));
+    const body = encodeURIComponent(details);
+    window.location.href = 'mailto:info@devseasglobal.com?subject=' + subject + '&body=' + body;
+    alert('Thank you. Your enquiry details are ready to send by email.');
+    closeEnquiryForm();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeEnquiryForm();
+    }
+  });
+</script>
+</body>
+</html>
